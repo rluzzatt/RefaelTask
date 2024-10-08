@@ -33,12 +33,24 @@ namespace TestsDeleteme
                 // Create a response message with the request ID
                 return new ResponseMessage(Guid.NewGuid(), requestMessage.Id, $"this is the response message (to request:{requestMessage.Id}");
             });
+            // Create a list of requests
+            var requestMessages = new List<RequestMessage>();
 
-            // Sending a request
-            var requestMessage = new RequestMessage(Guid.NewGuid(), "Requesting data for xyz...");
-            var responseMessage = await requester.Request(requestMessage);
+            // Sending multiple requests and storing messages
+            for (int i = 0; i < 5; i++)
+            {
+                requestMessages.Add(new RequestMessage(Guid.NewGuid(), $"Requesting data for xyz... {i}"));
+            }
 
-            Console.WriteLine($"Received Response: {responseMessage.ResponseDetails}");
+            // Create tasks for each request
+            var tasks = requestMessages.Select(async requestMessage =>
+            {
+                var responseMessage = await requester.Request(requestMessage);
+                Console.WriteLine($"Received Response: {responseMessage.ResponseDetails}");
+            });
+
+            // Await all tasks to ensure they complete
+            await Task.WhenAll(tasks);
         }
     }
 
