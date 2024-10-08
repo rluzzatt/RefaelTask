@@ -5,7 +5,8 @@ using System.Reactive.Subjects;
 
 namespace RefaelTask.Services
 {
-    public class MessageSubscriber<TMessage> : ISubscriber<TMessage> where TMessage : TraceableMessage
+    public class MessageSubscriber<TMessage> : ISubscriber<TMessage> 
+        where TMessage : TraceableMessage
     {
         private readonly Subject<TMessage> _messageStream = new Subject<TMessage>();
 

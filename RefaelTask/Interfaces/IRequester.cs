@@ -3,8 +3,8 @@
 namespace RefaelTask.Interfaces
 {
     public interface IRequester<in TRequestMessage, TReplyMessage>
-        where TRequestMessage : RequestMessage
-        where TReplyMessage : ResponseMessage
+        where TRequestMessage : TraceableMessage
+        where TReplyMessage : TraceableMessage
     {
         Task<TReplyMessage> Request(TRequestMessage message, CancellationToken cancellationToken = default);
     }

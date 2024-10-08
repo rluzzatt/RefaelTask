@@ -3,9 +3,9 @@
 namespace RefaelTask.Interfaces
 {
     public interface IReplier<out TRequestMessage, in TReplyMessage> 
-        where TRequestMessage : RequestMessage
-        where TReplyMessage : ResponseMessage
+        where TRequestMessage : TraceableMessage
+        where TReplyMessage : TraceableMessage
     {
-        IDisposable SubscribeRequests(Func<TRequestMessage, TReplyMessage> handler);//Ran:points to message erecived in subsctiber
+        IDisposable SubscribeRequests(Func<TRequestMessage, TReplyMessage> handler);
     }
 }

@@ -3,7 +3,8 @@ using RefaelTask.Model;
 
 namespace RefaelTask.Services
 {
-    public class MessagePublisher<TMessage> : IPublisher<TMessage> where TMessage : TraceableMessage
+    public class MessagePublisher<TMessage> : IPublisher<TMessage> 
+        where TMessage : TraceableMessage
     {
         private readonly MessageSubscriber<TMessage> _subscriber;
 
