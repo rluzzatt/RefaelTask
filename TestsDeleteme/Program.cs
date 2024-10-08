@@ -9,23 +9,25 @@ namespace TestsDeleteme
     {
         static async Task Main(string[] args)
         {
-           // Subscriber for RequestMessage(for replier to listen to)
-            var requestSubscriber = new MessageSubscriber<RequestMessage>();
+            // Subscriber for RequestMessage (for replier to listen to)
+            var requestMessageSubscriberForReplier = new MessageSubscriber<RequestMessage>();
 
             // Publisher for RequestMessage (requester will use this to send requests)
-            var requestPublisher = new MessagePublisher<RequestMessage>(requestSubscriber);
+            var requestMessagePublisherForRequester = new MessagePublisher<RequestMessage>(requestMessageSubscriberForReplier);
 
             // Subscriber for ResponseMessage (requester will use this to receive responses)
-            var responseSubscriber = new MessageSubscriber<ResponseMessage>();
+            var responseMessageSubscriberForRequester = new MessageSubscriber<ResponseMessage>();
 
             // Publisher for ResponseMessage (replier will use this to send responses)
-            var responsePublisher = new MessagePublisher<ResponseMessage>(responseSubscriber);
+            var responseMessagePublisherForReplier = new MessagePublisher<ResponseMessage>(responseMessageSubscriberForRequester);
 
-            // Create the Requester using requestPublisher and responseSubscriber
-            Requester requester = new Requester(requestPublisher, responseSubscriber);
 
-            // Create the Replier using responsePublisher and requestSubscriber
-            Replier replier = new Replier(responsePublisher, requestSubscriber);
+            // Create the Requester using requestMessagePublisherForRequester and responseMessageSubscriberForRequester
+            Requester requester = new Requester(requestMessagePublisherForRequester, responseMessageSubscriberForRequester);
+
+            // Create the Replier using responseMessagePublisherForReplier and requestMessageSubscriberForReplier
+            Replier replier = new Replier(responseMessagePublisherForReplier, requestMessageSubscriberForReplier);
+
 
             // Subscribing the replier
             replier.SubscribeRequests(requestMessage =>
@@ -46,7 +48,7 @@ namespace TestsDeleteme
             var tasks = requestMessages.Select(async requestMessage =>
             {
                 var responseMessage = await requester.Request(requestMessage);
-                Console.WriteLine($"Received Response: {responseMessage.ResponseDetails}");
+                Console.WriteLine($"Received Response for request: {responseMessage.RequestId}");
             });
 
             // Await all tasks to ensure they complete

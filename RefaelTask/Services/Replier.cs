@@ -8,7 +8,7 @@ namespace RefaelTask.Services
     {
         private readonly IPublisher<ResponseMessage> _publisher;
         private readonly ISubscriber<RequestMessage> _subscriber;
-        private readonly Random _random = new();
+        private readonly Random _random = new();//for testing match request and response at different process order
 
         public Replier(IPublisher<ResponseMessage> publisher, ISubscriber<RequestMessage> subscriber)
         {
