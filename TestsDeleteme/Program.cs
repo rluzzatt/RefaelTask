@@ -42,21 +42,4 @@ namespace TestsDeleteme
         }
     }
 
-
-    /*
-           MessageSubscriber<TextMessage> subscriber = new MessageSubscriber<TextMessage>();
-
-           // Subscribe to the MessageReceived event
-           subscriber.MessageReceived.Subscribe(msg =>
-           {
-               Console.WriteLine("Message received: " + msg);
-           });
-
-           // Create a publisher with a reference to the subscriber
-           var publisher = new MessagePublisher<TextMessage>(subscriber);
-
-           // Simulate publishing a message
-           await publisher.Publish(new TextMessage(Guid.NewGuid(),"Hello from Publisher!"));
-
-           */
 }
