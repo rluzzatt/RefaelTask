@@ -10,16 +10,16 @@ namespace TestsDeleteme
         static async Task Main(string[] args)
         {
             // Subscriber for RequestMessage (for replier to listen to)
-            var requestMessageSubscriberForReplier = new MessageSubscriber<RequestMessage>();
+            var requestMessageSubscriberForReplier = new MessageSubscriber<RequestTextMessage>();
 
             // Publisher for RequestMessage (requester will use this to send requests)
-            var requestMessagePublisherForRequester = new MessagePublisher<RequestMessage>(requestMessageSubscriberForReplier);
+            var requestMessagePublisherForRequester = new MessagePublisher<RequestTextMessage>(requestMessageSubscriberForReplier);
 
             // Subscriber for ResponseMessage (requester will use this to receive responses)
-            var responseMessageSubscriberForRequester = new MessageSubscriber<ResponseMessage>();
+            var responseMessageSubscriberForRequester = new MessageSubscriber<ResponseTextMessage>();
 
             // Publisher for ResponseMessage (replier will use this to send responses)
-            var responseMessagePublisherForReplier = new MessagePublisher<ResponseMessage>(responseMessageSubscriberForRequester);
+            var responseMessagePublisherForReplier = new MessagePublisher<ResponseTextMessage>(responseMessageSubscriberForRequester);
 
 
             // Create the Requester using requestMessagePublisherForRequester and responseMessageSubscriberForRequester
@@ -33,15 +33,15 @@ namespace TestsDeleteme
             replier.SubscribeRequests(requestMessage =>
             {
                 // Create a response message with the request ID
-                return new ResponseMessage(Guid.NewGuid(), requestMessage.Id, $"this is the response message (to request:{requestMessage.Id}");
+                return new ResponseTextMessage(Guid.NewGuid(), requestMessage.Id, $"this is the response message (to request:{requestMessage.Id}");
             });
             // Create a list of requests
-            var requestMessages = new List<RequestMessage>();
+            var requestMessages = new List<RequestTextMessage>();
 
             // Sending multiple requests and storing messages
             for (int i = 0; i < 5; i++)
             {
-                requestMessages.Add(new RequestMessage(Guid.NewGuid(), $"Requesting data for xyz... {i}"));
+                requestMessages.Add(new RequestTextMessage(Guid.NewGuid(), $"Requesting data for xyz... {i}"));
             }
 
             // Create tasks for each request

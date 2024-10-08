@@ -2,15 +2,17 @@
 {
     public class RequestMessage : TraceableMessage
     {
-        public string RequestDetails { get; set; }
-        public RequestMessage(Guid id,string content) : base(id)
+        public RequestMessage(Guid id) : base(id)
         {
-            RequestDetails = content;
         }
+    }
 
-        public override string ToString()
+    public class RequestTextMessage : RequestMessage
+    {
+        public string Text { get; set; }
+        public RequestTextMessage(Guid id, string content) : base(id)
         {
-            return $"{Timestamp}: Request {Id}";
+            Text = content;
         }
     }
 }

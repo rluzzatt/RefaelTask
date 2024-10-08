@@ -4,19 +4,19 @@ using System;
 
 namespace RefaelTask.Services
 {
-    public class Replier : IReplier<RequestMessage, ResponseMessage>
+    public class Replier : IReplier<RequestTextMessage, ResponseTextMessage>
     {
-        private readonly IPublisher<ResponseMessage> _publisher;
-        private readonly ISubscriber<RequestMessage> _subscriber;
+        private readonly IPublisher<ResponseTextMessage> _publisher;
+        private readonly ISubscriber<RequestTextMessage> _subscriber;
         private readonly Random _random = new();//for testing match request and response at different process order
 
-        public Replier(IPublisher<ResponseMessage> publisher, ISubscriber<RequestMessage> subscriber)
+        public Replier(IPublisher<ResponseTextMessage> publisher, ISubscriber<RequestTextMessage> subscriber)
         {
             _publisher = publisher;
             _subscriber = subscriber;
         }
 
-        public IDisposable SubscribeRequests(Func<RequestMessage, ResponseMessage> handler)
+        public IDisposable SubscribeRequests(Func<RequestTextMessage, ResponseTextMessage> handler)
         {
             return _subscriber.MessageReceived
                 .Subscribe(async requestMessage =>

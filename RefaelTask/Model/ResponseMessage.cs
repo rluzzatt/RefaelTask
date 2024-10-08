@@ -2,20 +2,24 @@
 {
     public class ResponseMessage : TraceableMessage
     {
-        public string ResponseDetails { get; set; }
 
         // Link to the related request
         public Guid RequestId { get; set; }
 
-        public ResponseMessage(Guid id, Guid requestId, string responseDetails) : base(id)
+        public ResponseMessage(Guid id, Guid requestId) : base(id)
         {
             RequestId = requestId;  
-            ResponseDetails = responseDetails;
         }
+    }
 
-        public override string ToString()
+    public class ResponseTextMessage : ResponseMessage
+    {
+        public string Text { get; set; }
+
+        public ResponseTextMessage(Guid id, Guid requestId, string responseDetails) 
+            : base(id, requestId)
         {
-            return $"{Timestamp}: Response to Request {RequestId} - Details: {ResponseDetails}";
+            Text = responseDetails;
         }
     }
 }
