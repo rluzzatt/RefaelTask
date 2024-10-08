@@ -1,5 +1,5 @@
 ﻿using RefaelTask.Interfaces;
-using RefaelTask.Model;
+using RefaelTask.Messages;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 

@@ -1,5 +1,5 @@
 ﻿using RefaelTask.Interfaces;
-using RefaelTask.Model;
+using RefaelTask.Messages;
 
 namespace RefaelTask.Services
 {

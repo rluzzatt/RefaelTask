@@ -1,12 +1,5 @@
-﻿namespace RefaelTask.Model
+﻿namespace RefaelTask.Messages
 {
-    public class RequestMessage : TraceableMessage
-    {
-        public RequestMessage(Guid id) : base(id)
-        {
-        }
-    }
-
     public class RequestTextMessage : RequestMessage
     {
         public string Text { get; set; }

@@ -1,4 +1,4 @@
-﻿using RefaelTask.Model;
+﻿using RefaelTask.Messages;
 
 namespace RefaelTask.Interfaces
 {

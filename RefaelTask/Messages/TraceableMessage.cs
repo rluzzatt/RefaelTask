@@ -1,4 +1,4 @@
-﻿namespace RefaelTask.Model
+﻿namespace RefaelTask.Messages
 {
     public abstract class TraceableMessage
     {
@@ -7,7 +7,7 @@
             Id = id;
             Timestamp = DateTime.Now;
         }
-        public DateTime Timestamp { get; set; }
+        public DateTime Timestamp { get; }
 
         public Guid Id { get; }
 
