@@ -1,7 +1,6 @@
 ﻿using RefaelTask.Interfaces;
 using RefaelTask.Model;
 using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
 
 namespace RefaelTask.Services
 {
@@ -24,10 +23,10 @@ namespace RefaelTask.Services
             await _publisher.Publish(requestMessage, cancellationToken);
 
             // Wait for the matching response
-            var responseTask = await _subscriber.MessageReceived
+            var responseMessage = await _subscriber.MessageReceived
                 .FirstAsync(response => response.RequestId == requestMessage.Id);
 
-            return  responseTask;
+            return  responseMessage;
         }
     }
 

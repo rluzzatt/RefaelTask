@@ -28,10 +28,10 @@ namespace TestsDeleteme
             Replier replier = new Replier(responsePublisher, requestSubscriber);
 
             // Subscribing the replier
-            replier.SubscribeRequests(responseMessage =>
+            replier.SubscribeRequests(requestMessage =>
             {
                 // Create a response message with the request ID
-                return new ResponseMessage(Guid.NewGuid(), responseMessage.Id, $"this is the response message (to request:{responseMessage.Id}");
+                return new ResponseMessage(Guid.NewGuid(), requestMessage.Id, $"this is the response message (to request:{requestMessage.Id}");
             });
 
             // Sending a request

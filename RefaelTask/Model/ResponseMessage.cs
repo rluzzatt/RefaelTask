@@ -4,12 +4,12 @@
     {
         public string ResponseDetails { get; set; }
 
-        // This property links the response to the original request
+        // Link to the related request
         public Guid RequestId { get; set; }
 
         public ResponseMessage(Guid id, Guid requestId, string responseDetails) : base(id)
         {
-            RequestId = requestId;  // Link to the related request
+            RequestId = requestId;  
             ResponseDetails = responseDetails;
         }
 

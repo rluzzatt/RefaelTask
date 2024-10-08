@@ -15,7 +15,7 @@ namespace RefaelTask.Services
 
         public async Task Publish(TMessage message, CancellationToken cancellationToken = default)
         {
-            // Simulate some async work (e.g., logging, validation, etc.)
+            // Simulate some async work 
             await Task.Delay(100, cancellationToken);
 
             // Publish the message by pushing it to the subscriber
